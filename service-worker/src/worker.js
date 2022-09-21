@@ -45,7 +45,7 @@ self.addEventListener("fetch", (ev) => {
         })
         .then((d) => {
           if (matches[1] in d) {
-            // return new Response("hi")
+            
             const [start, end] = d[matches[1]];
             return get(start, end).then((r) => {
               return makeTile(r);
@@ -57,7 +57,7 @@ self.addEventListener("fetch", (ev) => {
         })
     );
   } else {
-    console.log(`No matches found for ${ev.request}`);
+    console.log(`No matches found for ${ev.request.url}`);
     ev.respondWith(fetch(ev.request));
   }
 });

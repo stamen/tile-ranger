@@ -7,6 +7,7 @@ const addResourcesToCache = async (resources) => {
 };
 
 self.addEventListener("install", (e) => {
+  console.log(e);
   e.waitUntil(addResourcesToCache(["/tile.index.json"]));
 });
 
@@ -41,7 +42,6 @@ self.addEventListener("fetch", (ev) => {
       caches
         .match("/tile.index.json")
         .then((r) => {
-          // console.log(r)
           return r.json();
         })
         .then((d) => {
@@ -58,6 +58,7 @@ self.addEventListener("fetch", (ev) => {
         })
     );
   } else {
+    console.log(`No matches found for ${ev.request}`);
     ev.respondWith(fetch(ev.request));
   }
 });

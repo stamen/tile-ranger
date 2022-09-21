@@ -1,4 +1,4 @@
-navigator.serviceWorker.register("/tile-worker.js", {
+navigator.serviceWorker.register("./tile-worker.js", {
   scope: './',
 });
 (async function () {

@@ -15,7 +15,7 @@
   \**********************/
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("const maplibregl = __webpack_require__(/*! maplibre-gl */ \"./node_modules/maplibre-gl/dist/maplibre-gl.js\");\n// navigator.serviceWorker.register(new URL(\"./worker.js\", import.meta.url));\n(async function() {\n  const req = await fetch(\"tile.index.json\");\n  const index = await req.json();\n  const tileRegex = new RegExp(/INDEXED\\/(\\d+\\/\\d+\\/\\d+)\\.webp/)\n  const map = new maplibregl.Map({\n      container: 'map', // container id\n      style: {\n          'version': 8,\n          'sources': {\n              'raster-tiles': {\n                  'type': 'raster',\n                  'tiles': [\n                      'INDEXED/{z}/{x}/{y}.webp'\n                  ],\n                  'tileSize': 256,\n                  'maxzoom': 16\n              }\n          },\n          'layers': [\n              {\n                  'id': 'simple-tiles',\n                  'type': 'raster',\n                  'source': 'raster-tiles',\n                  'minzoom': 0,\n                  'maxzoom': 22\n              }\n          ]\n      },\n      center: [-122.56572332003616, 47.31040904747115], // starting position\n      zoom: 14,\n      hash: true // starting zoom\n  });\n})()\n\n\n//# sourceURL=webpack://tilestats/./src/index.js?");
+eval("const maplibregl = __webpack_require__(/*! maplibre-gl */ \"./node_modules/maplibre-gl/dist/maplibre-gl.js\");\nnavigator.serviceWorker.register(new URL(/* worker import */ __webpack_require__.p + __webpack_require__.u(\"src_worker_js\"), __webpack_require__.b));\n(async function () {\n  const map = new maplibregl.Map({\n    container: \"map\", // container id\n    style: {\n      version: 8,\n      sources: {\n        \"raster-tiles\": {\n          type: \"raster\",\n          tiles: [\"worker-server/{z}/{x}/{y}.webp\"],\n          tileSize: 256,\n          maxzoom: 16,\n        },\n      },\n      layers: [\n        {\n          id: \"simple-tiles\",\n          type: \"raster\",\n          source: \"raster-tiles\",\n          minzoom: 0,\n          maxzoom: 22,\n        },\n      ],\n    },\n    center: [-122.56572332003616, 47.31040904747115], // starting position\n    zoom: 14,\n  });\n})();\n\n\n//# sourceURL=webpack://tilestats/./src/index.js?");
 
 /***/ }),
 
@@ -54,6 +54,82 @@ eval("/* MapLibre GL JS is licensed under the 3-Clause BSD License. Full text of
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
+/******/ 	
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = __webpack_modules__;
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/get javascript chunk filename */
+/******/ 	(() => {
+/******/ 		// This function allow to reference async chunks
+/******/ 		__webpack_require__.u = (chunkId) => {
+/******/ 			// return url for filenames based on template
+/******/ 			return "" + chunkId + ".main.js";
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/global */
+/******/ 	(() => {
+/******/ 		__webpack_require__.g = (function() {
+/******/ 			if (typeof globalThis === 'object') return globalThis;
+/******/ 			try {
+/******/ 				return this || new Function('return this')();
+/******/ 			} catch (e) {
+/******/ 				if (typeof window === 'object') return window;
+/******/ 			}
+/******/ 		})();
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/publicPath */
+/******/ 	(() => {
+/******/ 		var scriptUrl;
+/******/ 		if (__webpack_require__.g.importScripts) scriptUrl = __webpack_require__.g.location + "";
+/******/ 		var document = __webpack_require__.g.document;
+/******/ 		if (!scriptUrl && document) {
+/******/ 			if (document.currentScript)
+/******/ 				scriptUrl = document.currentScript.src
+/******/ 			if (!scriptUrl) {
+/******/ 				var scripts = document.getElementsByTagName("script");
+/******/ 				if(scripts.length) scriptUrl = scripts[scripts.length - 1].src
+/******/ 			}
+/******/ 		}
+/******/ 		// When supporting browsers where an automatic publicPath is not supported you must specify an output.publicPath manually via configuration
+/******/ 		// or pass an empty string ("") and set the __webpack_public_path__ variable from your code to use your own logic.
+/******/ 		if (!scriptUrl) throw new Error("Automatic publicPath is not supported in this browser");
+/******/ 		scriptUrl = scriptUrl.replace(/#.*$/, "").replace(/\?.*$/, "").replace(/\/[^\/]+$/, "/");
+/******/ 		__webpack_require__.p = scriptUrl;
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/jsonp chunk loading */
+/******/ 	(() => {
+/******/ 		__webpack_require__.b = document.baseURI || self.location.href;
+/******/ 		
+/******/ 		// object to store loaded and loading chunks
+/******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
+/******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
+/******/ 		var installedChunks = {
+/******/ 			"main": 0
+/******/ 		};
+/******/ 		
+/******/ 		// no chunk on demand loading
+/******/ 		
+/******/ 		// no prefetching
+/******/ 		
+/******/ 		// no preloaded
+/******/ 		
+/******/ 		// no HMR
+/******/ 		
+/******/ 		// no HMR manifest
+/******/ 		
+/******/ 		// no on chunks loaded
+/******/ 		
+/******/ 		// no jsonp function
+/******/ 	})();
 /******/ 	
 /************************************************************************/
 /******/ 	

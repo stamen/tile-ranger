@@ -1,6 +1,4 @@
-navigator.serviceWorker.register("/tile-worker.js", {
-  scope: '/',
-});
+navigator.serviceWorker.register("/tile-worker.js");
 (async function () {
   const map = new maplibregl.Map({
     container: "map", // container id

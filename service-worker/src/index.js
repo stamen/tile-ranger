@@ -1,5 +1,7 @@
 const maplibregl = require("maplibre-gl");
-navigator.serviceWorker.register(new URL("./worker.js", import.meta.url));
+navigator.serviceWorker.register(new URL("./worker.js", import.meta.url), {
+  scope: '/',
+});
 (async function () {
   const map = new maplibregl.Map({
     container: "map", // container id

@@ -7,7 +7,6 @@ const addResourcesToCache = async (resources) => {
 };
 
 self.addEventListener("install", (e) => {
-  console.log(e);
   e.waitUntil(addResourcesToCache(["/tile.index.json"]));
 });
 

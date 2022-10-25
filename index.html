@@ -36,7 +36,7 @@
           const zxy = tileRegex.exec(params.url)[1];
           if (zxy in index) {
             const [start, end] = index[zxy];
-            fetch("/chunk.tile", {
+            fetch("chunk.tile", {
               headers: {
                 Range: `bytes=${start}-${end}`,
               },
